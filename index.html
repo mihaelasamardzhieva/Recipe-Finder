@@ -12,70 +12,575 @@
     />
 
     <link rel="stylesheet" href="css/style.css" />
-    <script type="module" src="js/legacy.js"></script>
+    <script type="module" src="js/main.js"></script>
     <title>Recipe finder</title>
   </head>
   <body>
     <div class="container">
       <header class="header">
-        <form class="search">
-          <input
-            type="text"
-            class="input__search"
-            placeholder="Search for ingredient here!"
+        <a href="/" class="header__logo-link">
+          <img
+            src="/img/logo.png"
+            alt="Recipe Finder Logo"
+            class="header__logo"
           />
-          <button class="btn btn__search">
-            <i class="bi bi-search search__icon"></i>
-            <span>Search</span>
-          </button>
-        </form>
-      </header>
-      <section class="search__results">
-        <ul class="results">
-          <!-- <li class="recipe__result">
-                      <figure class="recipe__img">
-                        <img src="src/img/test-1.jpg" alt="Test" />
-                      </figure>
-                      <div class="recipe__data">
-                        <h4 class="recipe__title">
-                          Pasta with Tuna
-                        </h4>
-                        <p class="recipe_calories">320 kcal</p>
-                      </div>
-                  </li> -->
-        </ul>
-      </section>
-      <section class="recipe">
-        <!-- <div class="recipe__view">
-          <img src="#" alt="" class="recipe__view--img" />
-          <h1 class="recipe__view--title">TEST</h1>
-          <div class="recipe__details">
-            <span class="cooking time">45</span>
-            <span class="servings">2 servings</span>
-            <span class="carbs">carbs: 45g</span>
-            <span class="protein">protein:20g</span>
-            <span class="fat">fat:10g</span>
-            <span class="fiber">fiber:8g</span>
-          </div>
-          <div class="ingredients__list">
-            <h2>Ingredients</h2>
-            <ul class="ingredinets">
-              <li class="ingredient">
-                <span class="amount">100</span>
-                <span class="unit">g</span>
-                <span class="name">oats</span>
+        </a>
+        <div class="header__actions">
+          <form class="search">
+            <input
+              name="query"
+              type="text"
+              class="search__input"
+              placeholder="Search by ingredient..."
+              required
+            />
+            <button type="submit" class="btn search__btn">
+              <i class="bi bi-search search__icon" aria-hidden="true"></i>
+              <span>Search</span>
+            </button>
+          </form>
+
+          <nav class="nav">
+            <ul class="nav__list">
+              <li class="nav__item">
+                <button type="button" class="nav__btn">
+                  <i class="bi bi-pencil-square" aria-hidden="true"></i>
+                  <span>Add recipe</span>
+                </button>
+              </li>
+              <li class="nav__item">
+                <button type="button" class="nav__btn">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                  <span>Bookmarks</span>
+                </button>
+                <div class="bookmarks-dropdown hidden">
+                  <ul class="bookmarks__list">
+                    <!-- <li class="bookmark-preview">
+                      <a class="bookmark-preview__link" href="#">
+                        <figure class="bookmark-preview__figure">
+                          <img src="#" alt="Recipe image" />
+                        </figure>
+                        <h4 class="bookmark-preview__title">TEST</h4>
+                  
+                      </a>
+                    </li> -->
+                  </ul>
+                </div>
+              </li>
+              <li class="nav__item nav__item--menu">
+                <button type="button" class="nav__btn">
+                  <i class="bi bi-list" aria-hidden="true"></i>
+                </button>
+                <div class="dropdown hidden">
+                  <a
+                    class="dropdown__item"
+                    href="#meal-planner"
+                    id="meal-planner"
+                  >
+                    Meal planner
+                  </a>
+
+                  <a
+                    class="dropdown__item"
+                    href="#shopping-list"
+                    id="shopping-list"
+                    >Shopping list</a
+                  >
+                </div>
               </li>
             </ul>
-          </div>
-          <div class="how__to__cook">
-            <h2>How to cook</h2>
-            <span class="directions"
-              >Please check out the directions at the website.</span
+          </nav>
+        </div>
+      </header>
+      <div class="main-content">
+        <section class="search-results">
+          <header class="search-results__header">
+            <h2 class="search-results__title">Search results</h2>
+          </header>
+
+          <ul class="results-list">
+            <!-- <li class="results-list__item>
+            <a href="#" class="recipe-card">
+                      <figure class="recipe-card__figure">
+                        <img src="" alt="Test" class="recipe-card__image" />
+                      </figure>
+                      <div class="recipe-card__content">
+                        <h3 class="recipe-card__title">
+                          TEST
+                        </h3>
+                        
+                      </div>
+                    </a>
+                  </li> -->
+          </ul>
+          <nav class="pagination" aria-label="Search results pages"></nav>
+        </section>
+
+        <section class="recipe-view">
+          <!-- <figure class="recipe-hero">
+          <img src="#" alt="" class="recipe-hero__img" />
+          <figcaption class="recipe-hero__caption">
+
+            <h1 class="recipe-hero__title">TEST</h1>
+          </figcaption>
+        </figure>
+
+        <section class="recipe-meta">
+          <div class="recipe-meta__item">
+            <i class="bi bi-clock" aria-hidden="true"></i>
+            <span>45 minutes</span>
+            </div>
+
+            <div class="recipe-meta__item">
+            <i class="bi bi-people" aria-hidden="true"></i>
+            <span>2 servings</span>
+            </div>
+
+               <button type="button" class="recipe-meta__bookmark-btn" aria-label="Bookmark recipe">
+                  <i class="bi bi-bookmark" aria-hidden="true"></i>
+                </button>
+              </section>
+
+            <section class='nutrition'>
+              <h2 class="section-title">Nutrition data</h2>
+
+              <ul class="nutrition__list">
+                <li class="nutrition__item">
+            <i class="bi bi-fire calories__icon" aria-hidden="true"></i>
+            <span >Calories: </span>
+            <strong>450 kcal</strong>
+                </li>
+             
+                <li class="nutrition__item">
+                  <i class="bi bi-cake2 carbs__icon" aria-hidden="true"></i>
+            <span >Carbs: </span>
+             <strong>45 g</strong>
+                </li>
+
+                     <li class="nutrition__item">
+                    <i class="bi bi-egg protein__icon" aria-hidden="true"></i>
+            <span >Protein</span>
+             <strong>45 g</strong>
+                     </li>
+
+                     <li class="nutrition__item">
+                      <i class="bi bi-droplet fat__icon" aria-hidden="true"></i>
+            <span >Fat:</span>
+            <strong>45 g</strong>
+                     </li>
+
+                        <li class="nutrition__item">
+                        <i class="bi bi-wheat" aria-hidden="true"></i>
+            <span>Fiber:</span>
+            <strong>45 g</strong>
+                        </li>
+                      </ul>
+                    </section>
+
+
+          <section class="ingredients">
+            <h2 class="section-title">Ingredients</h2>
+            
+            <ul class="ingredients__list">
+              <li class="ingredients__item">
+              <div class="ingredient__info">
+                <span class="ingredients__quantity">1</span>
+                <span class="ingredients__unit">kg</span>
+                <span class="ingredients__name">oats</span>
+              </div>
+                  <button class="ingredients__btn" type="button" aria-label="Add to shopping list">
+ <i class="bi bi-cart4" aria-hidden="true"></i>
+                </button>
+              </li>
+            </ul>
+          </section>
+
+          <section class="directions">
+            <h2 class="section-title">How to cook</h2>
+            <p class="directions__text"
+              >Please check the complete cooking instructions on the original website.</p
             >
-            <a class="btn btn__url" href="#">Check out now</a>
-          </div>
-        </div> -->
-      </section>
+            <a class="directions__btn" href="#"
+              target="_blank"
+      rel="noopener noreferrer">View recipe</a>
+         
+        </section>
+
+        <section class="meal-planner">
+          <h2 class="section-title">Add to Meal Planner</h2>
+
+          <form class="meal-planner__form">
+            <div class="meal-planner__field">
+
+        <label for="weekday">
+          Day
+        </label>
+
+        <select id="weekday" required>
+
+          <option value="">
+            Select day
+          </option>
+
+          <option value="monday">Monday</option>
+          <option value="tuesday">Tuesday</option>
+          <option value="wednesday">Wednesday</option>
+          <option value="thursday">Thursday</option>
+          <option value="friday">Friday</option>
+          <option value="saturday">Saturday</option>
+          <option value="sunday">Sunday</option>
+
+        </select>
+
+      </div>
+
+      <div class="meal-planner__field">
+
+        <label for="meal">
+          Meal
+        </label>
+
+        <select id="meal" required>
+
+          <option value="">
+            Select meal
+          </option>
+
+          <option value="breakfast">Breakfast</option>
+          <option value="lunch">Lunch</option>
+          <option value="dinner">Dinner</option>
+
+        </select>
+
+      </div>
+             <button class="btn btn--primary" type="submit">Save to planner</button>
+          </form>
+
+            <a href="#" class="meal-planner__link">Open Weekly Planner →</a>
+          
+        </section>
+        
+        --></section>
+      </div>
     </div>
+
+    <div class="overlay hidden"></div>
+
+    <!-- <div class="add-recipe-modal hidden" role="dialog" aria-modal="true">
+      <button class="btn-close__modal" aria-label="Close modal" type="button">
+        <i class="bi bi-x" aria-hidden="true"></i>
+      </button>
+      <form class="recipe-upload">
+        <div class="upload-column">
+          <h3 class="upload-heading">Recipe data</h3>
+          <label for="title">Title</label>
+          <input required name="title" id="title" type="text" />
+          <label for="url">URL</label>
+          <input required name="url" id="url" type="url" />
+          <label for="image">Image URL</label>
+          <input required name="image" id="image" type="url" />
+          <label for="publisher">Author</label>
+          <input required name="publisher" id="publisher" type="text" />
+          <label for="cookingTime">Cooking Time</label>
+          <input required name="cookingTime" id="cookingTime" type="number" />
+          <label for="servings">Servings</label>
+          <input required name="servings" id="servings" type="number" />
+        </div>
+
+        <div class="upload-column">
+          <h3 class="upload-heading">Nutrition Data</h3>
+          <label for="calories">Calories</label>
+          <input name="calories" id="calories" type="number" />
+          <label for="protein">Protein</label>
+          <input name="protein" id="protein" type="number" />
+          <label for="carbs">Carbs</label>
+          <input name="carbs" id="carbs" type="number" />
+          <label for="fat">Fat</label>
+          <input name="fat" id="fat" type="number" />
+          <label for="fiber">Fiber</label>
+          <input name="fiber" id="fiber" type="number" />
+        </div>
+
+        <div class="upload-column">
+          <h3 class="upload-heading">Ingredients</h3>
+
+          <div class="ingredients-header">
+            <span>Quantity</span>
+            <span>Unit</span>
+            <span>Ingredient</span>
+          </div>
+
+          <div class="ingredient-row">
+            <label class="visually-hidden" for="ingredient1-quantity"
+              >Quantity</label
+            >
+            <input
+              id="ingredient1-quantity"
+              class="ingredient__quantity"
+              type="number"
+              placeholder="1"
+              required
+            />
+            <label class="visually-hidden" for="ingredient1-unit">Unit</label>
+            <input
+              id="ingredient1-unit"
+              class="ingredient__unit"
+              type="text"
+              placeholder="tbsp"
+              required
+            />
+            <label class="visually-hidden" for="ingredient1-name"
+              >Ingredient</label
+            >
+            <input
+              id="ingredient1-name"
+              class="ingredient__name"
+              type="text"
+              placeholder="salt"
+              required
+            />
+          </div>
+
+          <div class="ingredient-row">
+            <label class="visually-hidden" for="ingredient2-quantity"
+              >Quantity</label
+            >
+            <input
+              id="ingredient2-quantity"
+              class="ingredient__quantity"
+              type="number"
+              required
+            />
+            <label class="visually-hidden" for="ingredient2-unit">Unit</label>
+            <input
+              id="ingredient2-unit"
+              class="ingredient__unit"
+              type="text"
+              required
+            />
+            <label class="visually-hidden" for="ingredient2-name"
+              >Ingredient</label
+            >
+            <input
+              id="ingredient2-name"
+              class="ingredient__name"
+              type="text"
+              required
+            />
+          </div>
+
+          <div class="ingredient-row">
+            <label class="visually-hidden" for="ingredient3-quantity"
+              >Quantity</label
+            >
+            <input
+              id="ingredient3-quantity"
+              class="ingredient__quantity"
+              type="number"
+              required
+            />
+            <label class="visually-hidden" for="ingredient3-unit">Unit</label>
+            <input
+              id="ingredient3-unit"
+              class="ingredient__unit"
+              type="text"
+              required
+            />
+            <label class="visually-hidden" for="ingredient3-name"
+              >Ingredient</label
+            >
+            <input
+              id="ingredient3-name"
+              class="ingredient__name"
+              type="text"
+              required
+            />
+          </div>
+
+          <button class="btn btn--secondary ingredient__add-btn" type="button">
+            <i class="bi bi-plus-circle" aria-hidden="true"></i>
+            <span> Add another ingredient</span>
+          </button>
+        </div>
+        <button class="btn upload-btn">
+          <i class="bi bi-cloud-arrow-up" aria-hidden="true"></i>
+          <span>Upload</span>
+        </button>
+      </form>
+    </div> -->
+
+    <section class="meal-planner-view hidden">
+      <h2 class="section-title">Weekly Meal Planner</h2>
+
+      <table class="meal-planner">
+        <caption class="visually-hidden">
+          Weekly Meal Planner
+        </caption>
+
+        <thead>
+          <tr>
+            <th scope="col">Day</th>
+            <th scope="col">Breakfast</th>
+            <th scope="col">Lunch</th>
+            <th scope="col">Dinner</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <th scope="row">Monday</th>
+            <td class="meal-planner__cell">
+              <!-- Rendered by JavaScript -->
+
+              <!--
+          <div class="meal-card">
+
+            <p class="meal-card__title">
+              Overnight Oats
+            </p>
+
+            <button
+              class="meal-card__delete-btn"
+              type="button"
+              aria-label="Remove meal"
+            >
+              <i class="bi bi-trash" aria-hidden="true"></i>
+            </button>
+
+          </div>
+          -->
+            </td>
+            <td class="meal-planner__cell"></td>
+            <td class="meal-planner__cell"></td>
+          </tr>
+
+          <tr>
+            <th scope="row">Tuesday</th>
+            <td class="meal-planner__cell"></td>
+            <td class="meal-planner__cell"></td>
+            <td class="meal-planner__cell"></td>
+          </tr>
+
+          <tr>
+            <th scope="row">Wednesday</th>
+            <td class="meal-planner__cell"></td>
+            <td class="meal-planner__cell"></td>
+            <td class="meal-planner__cell"></td>
+          </tr>
+
+          <tr>
+            <th scope="row">Thursday</th>
+            <td class="meal-planner__cell"></td>
+            <td class="meal-planner__cell"></td>
+            <td class="meal-planner__cell"></td>
+          </tr>
+
+          <tr>
+            <th scope="row">Friday</th>
+            <td class="meal-planner__cell"></td>
+            <td class="meal-planner__cell"></td>
+            <td class="meal-planner__cell"></td>
+          </tr>
+
+          <tr>
+            <th scope="row">Saturday</th>
+            <td class="meal-planner__cell"></td>
+            <td class="meal-planner__cell"></td>
+            <td class="meal-planner__cell"></td>
+          </tr>
+
+          <tr>
+            <th scope="row">Sunday</th>
+            <td class="meal-planner__cell"></td>
+            <td class="meal-planner__cell"></td>
+            <td class="meal-planner__cell"></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="shopping-list-view hidden">
+      <h2 class="section-title">Shopping List</h2>
+
+      <div class="shopping-list__header">
+        <p class="shopping-list__summary">0 Total • 0 Left to buy</p>
+        <button class="btn btn--primary shopping-list__add-btn" type="button">
+          <i class="bi bi-plus-lg" aria-hidden="true"></i>
+          <span>Add custom item</span>
+        </button>
+      </div>
+
+      <ul class="shopping-list">
+        <!-- <li class="shopping-item">
+          <label class="shopping-item__checkbox">
+            <input type="checkbox" class="shopping-item__check" />
+            <span class="shopping-item__checkmark"></span>
+          </label>
+         
+            <span class="shopping-item__data">
+              2 kg rice
+            </span> 
+            
+            <button
+            class="shopping-item__btn"
+            type="button"
+            aria-label="Edit item"
+          >
+            <i class="bi bi-pencil" aria-hidden="true"></i>
+          </button>
+
+          <button
+            class="shopping-item__btn"
+            type="button"
+            aria-label="Remove item"
+          >
+            <i class="bi bi-trash" aria-hidden="true"></i>
+          </button>
+        </li> -->
+      </ul>
+    </section>
+
+    <footer class="footer">
+      <p class="footer__copyright">&copy; Improved and modified by Mihaela.</p>
+      <p class="footer__copyright">
+        Check the original version here:
+        <a
+          class="footer__link"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://forkify-mw.vercel.app/"
+        >
+          Forkify</a
+        >
+      </p>
+    </footer>
+
+    <!-- <div class="empty-state">
+
+    <i class="bi bi-search empty-state__icon"></i>
+
+    <p class="empty-state__text">
+        Start by searching for an ingredient.
+    </p>
+
+</div> -->
+
+    <!-- <div class="spinner">
+
+    <div class="spinner__loader"></div>
+
+</div> -->
+
+    <!-- <div class="error">
+      <i class="bi bi-exclamation-circle"></i>
+
+      <p class="error__message">Something went wrong.</p>
+    </div> -->
+
+    <!-- <div class="message">
+      <i class="bi bi-check-circle"></i>
+
+      <p class="message__text">Recipe uploaded successfully.</p>
+    </div> -->
   </body>
 </html>

@@ -1,0 +1,87 @@
+body {
+  min-height: 100vh;
+}
+
+.container {
+  width: min(100% - 4.8rem, 140rem);
+  margin: 0 auto;
+}
+
+.header {
+  min-height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-32);
+}
+
+.header__logo-link {
+  display: block;
+  flex-shrink: 0;
+}
+
+.header__logo {
+  display: block;
+  width: 18rem;
+  height: auto;
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-32);
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav {
+  flex-shrink: 0;
+}
+
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.nav__item {
+  position: relative;
+}
+
+.main-content {
+  display: grid;
+  grid-template-columns: 40rem 1fr;
+  min-height: 70rem;
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.search-results {
+  min-width: 0;
+}
+
+.recipe-view {
+  min-width: 0;
+}
+
+.meal-planner-view {
+  width: 100%;
+}
+
+.shopping-list-view {
+  width: 100%;
+}
+
+.footer {
+  margin-top: var(--space-64);
+  padding: var(--space-32) 0;
+  text-align: center;
+  color: var(--color-grey-600);
+  font-size: 1.4rem;
+}

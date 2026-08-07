@@ -1,0 +1,125 @@
+:root {
+  /*  Primary colors  */
+
+  --color-primary: #52b788;
+  --color-primary-hover: #40916c;
+  --color-primary-light: #d8f3dc;
+
+  /*  Grey colors  */
+
+  --color-white: #ffffff;
+
+  --color-background-page: #f8f9fa;
+  --color-background-card: #ffffff;
+  --color-background-hover: #f1f3f5;
+
+  --color-grey-100: #f1f3f5;
+  --color-grey-200: #e9ecef;
+  --color-grey-300: #dee2e6;
+  --color-grey-400: #ced4da;
+  --color-grey-500: #adb5bd;
+  --color-grey-600: #868e96;
+  --color-grey-700: #495057;
+  --color-grey-800: #343a40;
+  --color-grey-900: #212529;
+
+  /*  Feedback  */
+
+  --color-success: #2dce89;
+  --color-warning: #f4a261;
+  --color-error: #e63946;
+
+  /*  Typography  */
+
+  --font-weight-regular: 400;
+  --font-weight-semi-bold: 600;
+  --font-weight-bold: 700;
+
+  /*  Spacing  */
+
+  --space-4: 0.4rem;
+  --space-8: 0.8rem;
+  --space-12: 1.2rem;
+  --space-16: 1.6rem;
+  --space-20: 2rem;
+  --space-24: 2.4rem;
+  --space-32: 3.2rem;
+  --space-40: 4rem;
+  --space-48: 4.8rem;
+  --space-64: 6.4rem;
+  --space-80: 8rem;
+
+  /*  Border radius  */
+
+  --radius-sm: 0.6rem;
+  --radius-md: 1.2rem;
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+
+  /*  Shadows  */
+
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 6px 18px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.12);
+
+  /*  Borders  */
+
+  --border-light: 1px solid var(--color-grey-300);
+
+  /*  Animation  */
+
+  --transition: all 0.25s ease;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-grey-900);
+  background-color: var(--color-background-page);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
