@@ -158,6 +158,11 @@
   border-bottom: var(--border-light);
 }
 
+.selected {
+  background-color: var(--color-primary-light);
+  border-left: 4px solid var(--color-primary);
+}
+
 .recipe-card {
   display: flex;
   align-items: center;
@@ -192,9 +197,21 @@
   color: var(--color-grey-800);
 }
 
+.recipe-card__calories {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 1.2rem;
+  color: var(--color-grey-800);
+}
+.recipe-card__calories span {
+  font-weight: var(--font-weight-semi-bold);
+}
+
 .pagination {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: var(--space-20);
   margin-top: auto;
 }
@@ -203,13 +220,15 @@
   display: flex;
   align-items: center;
   gap: var(--space-8);
-  padding: var(--space-10) var(--space-18);
-  border-radius: var(--radius-md);
+  padding: var(--space-12) var(--space-20);
+  border-radius: var(--radius-lg);
   color: var(--color-primary);
   transition: var(--transition);
 }
 
 .pagination__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
   background-color: var(--color-primary-light);
 }
 
@@ -271,20 +290,8 @@
 }
 
 .nutrition {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-32);
+  padding-left: 2.5rem;
   padding-bottom: var(--space-24);
-}
-
-.nutrition__item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-8);
-}
-
-.nutrition__item i {
-  color: var(--color-primary);
 }
 
 .section-title {
@@ -292,6 +299,24 @@
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--space-20);
   color: var(--color-grey-900);
+}
+
+.nutrition__list {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-20);
+}
+
+.nutrition__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  font-size: 1.5rem;
+}
+
+.nutrition__item i {
+  color: var(--color-primary);
 }
 
 .ingredients {
@@ -675,4 +700,37 @@
 
 .message__text {
   font-weight: var(--font-weight-semi-bold);
+}
+
+/* UI */
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 20rem;
+}
+
+.spinner__icon {
+  font-size: 4rem;
+  color: var(--color-primary);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error i {
+  font-size: 4.8rem;
+  color: var(--color-error);
+}
+
+.error p {
+  max-width: 35rem;
+  font-size: 1.6rem;
+  color: var(--color-grey-700);
+  line-height: 1.6;
 }
