@@ -31,9 +31,18 @@ function generateRecipeMarkup(recipe) {
             <span>${recipe.servings} SERVINGS</span>
             </div>
 
-               <button type="button" class="recipe-meta__bookmark-btn" aria-label="Bookmark recipe">
-                  <i class="bi bi-bookmark" aria-hidden="true"></i>
-                </button>
+             <button
+  type="button"
+  class="recipe-meta__bookmark-btn ${
+    recipe.bookmarked ? "recipe-meta__bookmark-btn--active" : ""
+  }"
+  aria-label="${recipe.bookmarked ? "Remove bookmark" : "Bookmark recipe"}"
+>
+  <i
+    class="bi ${recipe.bookmarked ? "bi-bookmark-fill" : "bi-bookmark"}"
+    aria-hidden="true"
+  ></i>
+</button>
               </section>
 
             <section class='nutrition'>
@@ -154,11 +163,9 @@ function generateRecipeMarkup(recipe) {
 function generateMarkupIngredient(ingredient) {
   return `
   <li class="ingredients__item">
-              <div class="ingredient__info">
                 <span class="ingredients__quantity">${ingredient.amount}</span>
                 <span class="ingredients__unit">${ingredient.unit}</span>
-                <span class="ingredients__name">${ingredient.name}</span>
-              </div>
+                <span class="ingredients__name">${ingredient.name}</span> 
                   <button class="ingredients__btn" type="button" aria-label="Add to shopping list">
  <i class="bi bi-cart4" aria-hidden="true"></i>
                 </button>
@@ -170,9 +177,25 @@ export function renderRecipe(recipe) {
   recipeView.innerHTML = "";
 
   recipeView.insertAdjacentHTML("beforeend", generateRecipeMarkup(recipe));
+}
 
+export function scrollToRecipe() {
   recipeView.scrollIntoView({
     behavior: "smooth",
     block: "start",
   });
+}
+
+export function addHandlerBookmark(handler) {
+  recipeView.addEventListener("click", function (e) {
+    const btn = e.target.closest(".recipe-meta__bookmark-btn");
+
+    if (!btn) return;
+
+    handler();
+  });
+}
+
+export function clearRecipe() {
+  recipeView.innerHTML = "";
 }

@@ -43,13 +43,13 @@
           <nav class="nav">
             <ul class="nav__list">
               <li class="nav__item">
-                <button type="button" class="nav__btn">
+                <button type="button" class="nav__btn nav__btn--add-recipe">
                   <i class="bi bi-pencil-square" aria-hidden="true"></i>
                   <span>Add recipe</span>
                 </button>
               </li>
               <li class="nav__item">
-                <button type="button" class="nav__btn">
+                <button type="button" class="nav__btn nav__btn--bookmarks">
                   <i class="bi bi-bookmark" aria-hidden="true"></i>
                   <span>Bookmarks</span>
                 </button>
@@ -65,6 +65,20 @@
                       </a>
                     </li> -->
                   </ul>
+                </div>
+              </li>
+              <li class="nav__item">
+                <button
+                  type="button"
+                  class="nav__btn nav__btn--my-recipes"
+                  aria-expanded="false"
+                >
+                  <i class="bi bi-journal-bookmark" aria-hidden="true"></i>
+                  <span>My Recipes</span>
+                </button>
+
+                <div class="my-recipes-dropdown hidden">
+                  <ul class="my-recipes__list"></ul>
                 </div>
               </li>
               <li class="nav__item nav__item--menu">
@@ -252,7 +266,7 @@
 
     <div class="overlay hidden"></div>
 
-    <!-- <div class="add-recipe-modal hidden" role="dialog" aria-modal="true">
+    <div class="add-recipe-modal hidden" role="dialog" aria-modal="true">
       <button class="btn-close__modal" aria-label="Close modal" type="button">
         <i class="bi bi-x" aria-hidden="true"></i>
       </button>
@@ -335,24 +349,13 @@
               id="ingredient2-quantity"
               class="ingredient__quantity"
               type="number"
-              required
             />
             <label class="visually-hidden" for="ingredient2-unit">Unit</label>
-            <input
-              id="ingredient2-unit"
-              class="ingredient__unit"
-              type="text"
-              required
-            />
+            <input id="ingredient2-unit" class="ingredient__unit" type="text" />
             <label class="visually-hidden" for="ingredient2-name"
               >Ingredient</label
             >
-            <input
-              id="ingredient2-name"
-              class="ingredient__name"
-              type="text"
-              required
-            />
+            <input id="ingredient2-name" class="ingredient__name" type="text" />
           </div>
 
           <div class="ingredient-row">
@@ -363,24 +366,13 @@
               id="ingredient3-quantity"
               class="ingredient__quantity"
               type="number"
-              required
             />
             <label class="visually-hidden" for="ingredient3-unit">Unit</label>
-            <input
-              id="ingredient3-unit"
-              class="ingredient__unit"
-              type="text"
-              required
-            />
+            <input id="ingredient3-unit" class="ingredient__unit" type="text" />
             <label class="visually-hidden" for="ingredient3-name"
               >Ingredient</label
             >
-            <input
-              id="ingredient3-name"
-              class="ingredient__name"
-              type="text"
-              required
-            />
+            <input id="ingredient3-name" class="ingredient__name" type="text" />
           </div>
 
           <button class="btn btn--secondary ingredient__add-btn" type="button">
@@ -388,12 +380,13 @@
             <span> Add another ingredient</span>
           </button>
         </div>
-        <button class="btn upload-btn">
+        <p class="upload-message hidden" role="alert"></p>
+        <button class="btn upload-btn" type="submit">
           <i class="bi bi-cloud-arrow-up" aria-hidden="true"></i>
           <span>Upload</span>
         </button>
       </form>
-    </div> -->
+    </div>
 
     <section class="meal-planner-view hidden">
       <h2 class="section-title">Weekly Meal Planner</h2>

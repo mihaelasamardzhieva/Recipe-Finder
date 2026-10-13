@@ -38,17 +38,11 @@ const createRecipesArray = function (recipes) {
 
     return {
       id: recipe.id,
-
       title: recipe.title,
-
-      image: recipe.image,
-
+      image: recipe.image.replace("-312x231", "-636x393"),
       cookingTime: recipe.readyInMinutes,
-
       servings: recipe.servings,
-
       sourceUrl: recipe.sourceUrl,
-
       ingredients: recipe.nutrition.ingredients.map((ingredient) => ({
         name: ingredient.name,
         amount: ingredient.amount,
@@ -60,22 +54,18 @@ const createRecipesArray = function (recipes) {
           amount: calories ? Math.round(calories.amount) : null,
           unit: calories?.unit ?? "",
         },
-
         fat: {
           amount: fat ? Math.round(fat.amount) : null,
           unit: fat?.unit ?? "",
         },
-
         carbs: {
           amount: carbs ? Math.round(carbs.amount) : null,
           unit: carbs?.unit ?? "",
         },
-
         protein: {
           amount: protein ? Math.round(protein.amount) : null,
           unit: protein?.unit ?? "",
         },
-
         fiber: {
           amount: fiber ? Math.round(fiber.amount) : null,
           unit: fiber?.unit ?? "",
