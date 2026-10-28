@@ -53,14 +53,19 @@ export function addHandlerSelectBookmark(handler) {
     const removeBtn = e.target.closest(".bookmark-preview__remove");
 
     if (removeBtn) {
+      e.preventDefault();
+
       const bookmark = removeBtn.closest(".bookmark-preview");
       const recipeId = bookmark.dataset.id;
+
       handler("remove", recipeId);
       return;
     }
 
     const bookmark = e.target.closest(".bookmark-preview__link");
     if (!bookmark) return;
+
+    e.preventDefault();
 
     const recipeId = bookmark.closest(".bookmark-preview").dataset.id;
     handler("select", recipeId);

@@ -5,7 +5,7 @@ const menuDropdown = document.querySelector(".nav__item--menu .dropdown");
 const myRecipesBtn = document.querySelector(".nav__btn--my-recipes");
 const myRecipesDropdown = document.querySelector(".my-recipes-dropdown");
 
-function closeAllDropdowns() {
+export function closeAllDropdowns() {
   bookmarksDropdown.classList.add("hidden");
   myRecipesDropdown.classList.add("hidden");
   menuDropdown.classList.add("hidden");

@@ -261,6 +261,179 @@
         </section>
         
         --></section>
+
+        <section class="meal-planner-view hidden">
+          <h2 class="section-title">Weekly Meal Planner</h2>
+
+          <table class="meal-planner">
+            <caption class="visually-hidden">
+              Weekly Meal Planner
+            </caption>
+
+            <thead>
+              <tr>
+                <th scope="col">Day</th>
+                <th scope="col">Breakfast</th>
+                <th scope="col">Lunch</th>
+                <th scope="col">Dinner</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <th scope="row">Monday</th>
+                <td class="meal-planner__cell">
+                  <!-- Rendered by JavaScript -->
+
+                  <!--
+          <div class="meal-card">
+
+            <p class="meal-card__title">
+              Overnight Oats
+            </p>
+
+            <button
+              class="meal-card__delete-btn"
+              type="button"
+              aria-label="Remove meal"
+            >
+              <i class="bi bi-trash" aria-hidden="true"></i>
+            </button>
+
+          </div>
+          -->
+                </td>
+                <td class="meal-planner__cell"></td>
+                <td class="meal-planner__cell"></td>
+              </tr>
+
+              <tr>
+                <th scope="row">Tuesday</th>
+                <td class="meal-planner__cell"></td>
+                <td class="meal-planner__cell"></td>
+                <td class="meal-planner__cell"></td>
+              </tr>
+
+              <tr>
+                <th scope="row">Wednesday</th>
+                <td class="meal-planner__cell"></td>
+                <td class="meal-planner__cell"></td>
+                <td class="meal-planner__cell"></td>
+              </tr>
+
+              <tr>
+                <th scope="row">Thursday</th>
+                <td class="meal-planner__cell"></td>
+                <td class="meal-planner__cell"></td>
+                <td class="meal-planner__cell"></td>
+              </tr>
+
+              <tr>
+                <th scope="row">Friday</th>
+                <td class="meal-planner__cell"></td>
+                <td class="meal-planner__cell"></td>
+                <td class="meal-planner__cell"></td>
+              </tr>
+
+              <tr>
+                <th scope="row">Saturday</th>
+                <td class="meal-planner__cell"></td>
+                <td class="meal-planner__cell"></td>
+                <td class="meal-planner__cell"></td>
+              </tr>
+
+              <tr>
+                <th scope="row">Sunday</th>
+                <td class="meal-planner__cell"></td>
+                <td class="meal-planner__cell"></td>
+                <td class="meal-planner__cell"></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section class="shopping-list-view hidden">
+          <h2 class="section-title">Shopping List</h2>
+          <p class="shopping-list__summary">0 Total • 0 Left to buy</p>
+
+          <div class="shopping-list__toolbar">
+            <button class="shopping-list__clear-btn hidden" type="button">
+              <i class="bi bi-trash" aria-hidden="true"></i>
+              <span>Clear completed</span>
+            </button>
+          </div>
+
+          <div class="shopping-list__empty hidden">
+            <i class="bi bi-basket2" aria-hidden="true"></i>
+            <h3>Your shopping list is empty</h3>
+            <p>
+              Add ingredients from a recipe or create a custom item to get
+              started.
+            </p>
+          </div>
+          <ul class="shopping-list"></ul>
+
+          <div class="shopping-list__footer">
+            <button
+              class="btn btn--primary shopping-list__add-btn"
+              type="button"
+              aria-expanded="false"
+              aria-controls="shopping-list-custom-form"
+            >
+              <i class="bi bi-plus-lg" aria-hidden="true"></i>
+              <span>Add custom item</span>
+            </button>
+
+            <form
+              class="shopping-list__custom-form hidden"
+              id="shopping-list-custom-form"
+            >
+              <div class="shopping-list__custom-fields">
+                <input
+                  class="shopping-list__custom-name"
+                  type="text"
+                  name="name"
+                  placeholder="Item name (required)"
+                  aria-label="Item name"
+                  required
+                />
+
+                <input
+                  class="shopping-list__custom-amount"
+                  type="number"
+                  name="amount"
+                  min="0"
+                  step="any"
+                  placeholder="Quantity"
+                  aria-label="Quantity"
+                />
+
+                <input
+                  class="shopping-list__custom-unit"
+                  type="text"
+                  name="unit"
+                  placeholder="Unit (e.g. pcs, g)"
+                  aria-label="Unit"
+                />
+              </div>
+
+              <div class="shopping-list__custom-actions">
+                <button
+                  class="btn btn--primary shopping-list__custom-save"
+                  type="submit"
+                >
+                  <i class="bi bi-check-lg" aria-hidden="true"></i>
+                  <span>Add item</span>
+                </button>
+
+                <button class="btn shopping-list__custom-cancel" type="button">
+                  <i class="bi bi-x-lg" aria-hidden="true"></i>
+                  <span>Cancel</span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
       </div>
     </div>
 
@@ -387,137 +560,6 @@
         </button>
       </form>
     </div>
-
-    <section class="meal-planner-view hidden">
-      <h2 class="section-title">Weekly Meal Planner</h2>
-
-      <table class="meal-planner">
-        <caption class="visually-hidden">
-          Weekly Meal Planner
-        </caption>
-
-        <thead>
-          <tr>
-            <th scope="col">Day</th>
-            <th scope="col">Breakfast</th>
-            <th scope="col">Lunch</th>
-            <th scope="col">Dinner</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <th scope="row">Monday</th>
-            <td class="meal-planner__cell">
-              <!-- Rendered by JavaScript -->
-
-              <!--
-          <div class="meal-card">
-
-            <p class="meal-card__title">
-              Overnight Oats
-            </p>
-
-            <button
-              class="meal-card__delete-btn"
-              type="button"
-              aria-label="Remove meal"
-            >
-              <i class="bi bi-trash" aria-hidden="true"></i>
-            </button>
-
-          </div>
-          -->
-            </td>
-            <td class="meal-planner__cell"></td>
-            <td class="meal-planner__cell"></td>
-          </tr>
-
-          <tr>
-            <th scope="row">Tuesday</th>
-            <td class="meal-planner__cell"></td>
-            <td class="meal-planner__cell"></td>
-            <td class="meal-planner__cell"></td>
-          </tr>
-
-          <tr>
-            <th scope="row">Wednesday</th>
-            <td class="meal-planner__cell"></td>
-            <td class="meal-planner__cell"></td>
-            <td class="meal-planner__cell"></td>
-          </tr>
-
-          <tr>
-            <th scope="row">Thursday</th>
-            <td class="meal-planner__cell"></td>
-            <td class="meal-planner__cell"></td>
-            <td class="meal-planner__cell"></td>
-          </tr>
-
-          <tr>
-            <th scope="row">Friday</th>
-            <td class="meal-planner__cell"></td>
-            <td class="meal-planner__cell"></td>
-            <td class="meal-planner__cell"></td>
-          </tr>
-
-          <tr>
-            <th scope="row">Saturday</th>
-            <td class="meal-planner__cell"></td>
-            <td class="meal-planner__cell"></td>
-            <td class="meal-planner__cell"></td>
-          </tr>
-
-          <tr>
-            <th scope="row">Sunday</th>
-            <td class="meal-planner__cell"></td>
-            <td class="meal-planner__cell"></td>
-            <td class="meal-planner__cell"></td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="shopping-list-view hidden">
-      <h2 class="section-title">Shopping List</h2>
-
-      <div class="shopping-list__header">
-        <p class="shopping-list__summary">0 Total • 0 Left to buy</p>
-        <button class="btn btn--primary shopping-list__add-btn" type="button">
-          <i class="bi bi-plus-lg" aria-hidden="true"></i>
-          <span>Add custom item</span>
-        </button>
-      </div>
-
-      <ul class="shopping-list">
-        <!-- <li class="shopping-item">
-          <label class="shopping-item__checkbox">
-            <input type="checkbox" class="shopping-item__check" />
-            <span class="shopping-item__checkmark"></span>
-          </label>
-         
-            <span class="shopping-item__data">
-              2 kg rice
-            </span> 
-            
-            <button
-            class="shopping-item__btn"
-            type="button"
-            aria-label="Edit item"
-          >
-            <i class="bi bi-pencil" aria-hidden="true"></i>
-          </button>
-
-          <button
-            class="shopping-item__btn"
-            type="button"
-            aria-label="Remove item"
-          >
-            <i class="bi bi-trash" aria-hidden="true"></i>
-          </button>
-        </li> -->
-      </ul>
-    </section>
 
     <footer class="footer">
       <p class="footer__copyright">&copy; Improved and modified by Mihaela.</p>

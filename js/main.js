@@ -6,12 +6,19 @@ import {
   addBookmark,
   removeBookmark,
   addUserRecipe,
+  addShoppingItem,
+  toggleShoppingItem,
+  removeShoppingItem,
+  updateShoppingItem,
+  clearCompletedShoppingItems,
 } from "./state";
 import { fetchRecipes } from "./api";
 import {
   loadBookmarks,
   saveUserRecipes,
   loadUserRecipes,
+  loadShoppingList,
+  saveShoppingList,
 } from "./localStorage";
 
 import * as recipeView from "./views/recipeView";
@@ -21,6 +28,8 @@ import * as bookmarksView from "./views/bookmarksView";
 import * as navView from "./views/navView";
 import * as addRecipeView from "./views/addRecipeView";
 import * as myRecipesView from "./views/myRecipesView";
+import * as shoppingListView from "./views/shoppingListView";
+import * as pageView from "./views/pageView";
 
 async function controlSearchResults() {
   const query = getQuery();
@@ -64,7 +73,9 @@ function controlRecipe(recipeId) {
     state.recipe = recipe;
 
     recipeView.renderRecipe(recipe);
+    pageView.showRecipePage();
     resultsView.updateActiveRecipe(id);
+    navView.closeAllDropdowns();
   } catch (err) {
     console.log(err);
     recipeView.showError("Something went wrong while loading the recipe.");
@@ -145,6 +156,61 @@ function controlMyRecipeAction(action, recipeId) {
 
   myRecipesView.renderMyRecipes(state.userRecipes);
 }
+
+function controlShowShoppingList() {
+  pageView.showShoppingListPage();
+  shoppingListView.renderShoppingList(state.shoppingList);
+  navView.closeAllDropdowns();
+}
+
+function controlAddShoppingItem(item) {
+  addShoppingItem({
+    ...item,
+    amount: item.amount === "" ? null : Number(item.amount),
+  });
+
+  shoppingListView.renderShoppingList(state.shoppingList);
+  saveShoppingList(state.shoppingList);
+}
+
+function controlToggleShoppingItem(id) {
+  toggleShoppingItem(id);
+  shoppingListView.renderShoppingList(state.shoppingList);
+  saveShoppingList(state.shoppingList);
+}
+
+function controlRemoveShoppingItem(id) {
+  removeShoppingItem(id);
+  shoppingListView.renderShoppingList(state.shoppingList);
+  saveShoppingList(state.shoppingList);
+}
+
+function controlSaveShoppingItem(id, updates) {
+  updateShoppingItem(id, updates);
+
+  shoppingListView.renderShoppingList(state.shoppingList);
+  saveShoppingList(state.shoppingList);
+}
+
+function controlClearCompleted() {
+  clearCompletedShoppingItems();
+  shoppingListView.renderShoppingList(state.shoppingList);
+  saveShoppingList(state.shoppingList);
+}
+
+shoppingListView.addHandlerEditShoppingItem();
+shoppingListView.addHandlerSaveShoppingItem(controlSaveShoppingItem);
+shoppingListView.addHandlerToggleCustomForm();
+shoppingListView.addHandlerAddCustomItem(controlAddShoppingItem);
+shoppingListView.addHandlerClearCompleted(controlClearCompleted);
+
+recipeView.addHandlerAddIngredient(controlAddShoppingItem);
+shoppingListView.addHandlerRemoveShoppingItem(controlRemoveShoppingItem);
+
+state.shoppingList = loadShoppingList();
+shoppingListView.addHandlerShowShoppingList(controlShowShoppingList);
+shoppingListView.renderShoppingList(state.shoppingList);
+shoppingListView.addHandlerToggleShoppingItem(controlToggleShoppingItem);
 
 state.bookmarks = loadBookmarks();
 bookmarksView.renderBookmarks(state.bookmarks);

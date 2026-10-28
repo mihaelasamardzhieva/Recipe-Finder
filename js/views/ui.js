@@ -22,3 +22,6 @@ export function renderError(parentEl, message) {
 
   parentEl.insertAdjacentHTML("afterbegin", markup);
 }
+
+const toast = document.querySelector(".toast");
+let hideTimeout;

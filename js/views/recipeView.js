@@ -199,3 +199,33 @@ export function addHandlerBookmark(handler) {
 export function clearRecipe() {
   recipeView.innerHTML = "";
 }
+
+export function addHandlerAddIngredient(handler) {
+  recipeView.addEventListener("click", function (e) {
+    const btn = e.target.closest(".ingredients__btn");
+
+    if (!btn) return;
+
+    const ingredient = btn.closest(".ingredients__item");
+
+    const item = {
+      amount: ingredient
+        .querySelector(".ingredients__quantity")
+        .textContent.trim(),
+      unit: ingredient.querySelector(".ingredients__unit").textContent.trim(),
+      name: ingredient.querySelector(".ingredients__name").textContent.trim(),
+    };
+
+    handler(item);
+
+    btn.classList.add("ingredients__btn--added");
+    btn.dataset.tooltip = "Added to shopping list";
+
+    clearTimeout(btn.successTimeout);
+
+    btn.successTimeout = setTimeout(() => {
+      btn.classList.remove("ingredients__btn--added");
+      delete btn.dataset.tooltip;
+    }, 2000);
+  });
+}

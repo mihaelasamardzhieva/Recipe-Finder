@@ -26,3 +26,20 @@ export function loadUserRecipes() {
     return [];
   }
 }
+
+export function saveShoppingList(items) {
+  localStorage.setItem("shoppingList", JSON.stringify(items));
+}
+
+export function loadShoppingList() {
+  const items = localStorage.getItem("shoppingList");
+
+  if (!items) return [];
+
+  try {
+    return JSON.parse(items);
+  } catch (err) {
+    console.error("Could not load shopping list:", err);
+    return [];
+  }
+}

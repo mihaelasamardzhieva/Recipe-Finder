@@ -50,3 +50,61 @@ export function removeBookmark(id) {
 export function addUserRecipe(recipe) {
   state.userRecipes.push(recipe);
 }
+
+export function addShoppingItem(item) {
+  const name = item.name.trim();
+  const unit = (item.unit || "").trim();
+
+  const existingItem = state.shoppingList.find(
+    (shoppingItem) =>
+      shoppingItem.name.trim().toLowerCase() === name.toLowerCase() &&
+      shoppingItem.unit.trim().toLowerCase() === unit.toLowerCase() &&
+      !shoppingItem.checked,
+  );
+
+  if (existingItem && item.amount !== null) {
+    if (existingItem.amount !== null) {
+      existingItem.amount += item.amount;
+    } else {
+      existingItem.amount = item.amount;
+    }
+
+    return existingItem;
+  }
+
+  const newItem = {
+    id: crypto.randomUUID(),
+    name,
+    amount: item.amount ?? null,
+    unit,
+    checked: false,
+  };
+
+  state.shoppingList.push(newItem);
+
+  return newItem;
+}
+
+export function toggleShoppingItem(id) {
+  const item = state.shoppingList.find(
+    (shoppingItem) => shoppingItem.id === id,
+  );
+
+  if (item) item.checked = !item.checked;
+}
+
+export function updateShoppingItem(id, updates) {
+  const item = state.shoppingList.find(
+    (shoppingItem) => shoppingItem.id === id,
+  );
+
+  if (item) Object.assign(item, updates);
+}
+
+export function removeShoppingItem(id) {
+  state.shoppingList = state.shoppingList.filter((item) => item.id !== id);
+}
+
+export function clearCompletedShoppingItems() {
+  state.shoppingList = state.shoppingList.filter((item) => !item.checked);
+}
