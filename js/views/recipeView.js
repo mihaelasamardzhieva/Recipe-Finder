@@ -113,7 +113,7 @@ function generateRecipeMarkup(recipe) {
           Day
         </label>
 
-        <select id="weekday" required>
+        <select id="weekday" name="day" required>
 
           <option value="">
             Select day
@@ -137,7 +137,7 @@ function generateRecipeMarkup(recipe) {
           Meal
         </label>
 
-        <select id="meal" required>
+        <select id="meal" name="mealType"required>
 
           <option value="">
             Select meal
@@ -227,5 +227,37 @@ export function addHandlerAddIngredient(handler) {
       btn.classList.remove("ingredients__btn--added");
       delete btn.dataset.tooltip;
     }, 2000);
+  });
+}
+
+export function addHandlerAddToMealPlanner(handler) {
+  recipeView.addEventListener("submit", function (e) {
+    const form = e.target.closest(".meal-planner__form");
+
+    if (!form) return;
+
+    e.preventDefault();
+
+    const day = form.querySelector('[name="day"]').value;
+    const mealType = form.querySelector('[name="mealType"]').value;
+
+    if (!day || !mealType) return;
+
+    handler(day, mealType);
+
+    const button = form.querySelector('button[type="submit"]');
+    const originalText = button.textContent.trim();
+
+    button.textContent = "✓ Added to Meal Planner";
+    button.classList.add("meal-planner__submit--success");
+    button.disabled = true;
+
+    setTimeout(() => {
+      button.textContent = originalText;
+      button.classList.remove("meal-planner__submit--success");
+      button.disabled = false;
+    }, 2000);
+
+    form.reset();
   });
 }

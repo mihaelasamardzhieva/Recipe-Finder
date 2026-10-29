@@ -43,3 +43,20 @@ export function loadShoppingList() {
     return [];
   }
 }
+
+export const saveMealPlanner = function (meals) {
+  localStorage.setItem("mealPlanner", JSON.stringify(meals));
+};
+
+export const loadMealPlanner = function () {
+  const data = localStorage.getItem("mealPlanner");
+
+  if (!data) return [];
+
+  try {
+    return JSON.parse(data);
+  } catch (err) {
+    console.error("Could not load the meal planner:", err);
+    return [];
+  }
+};

@@ -85,3 +85,6 @@ body {
   color: var(--color-grey-600);
   font-size: 1.4rem;
 }
+.hidden {
+  display: none;
+}

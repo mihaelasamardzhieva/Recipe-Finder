@@ -11,6 +11,8 @@ import {
   removeShoppingItem,
   updateShoppingItem,
   clearCompletedShoppingItems,
+  addMealToPlanner,
+  removeMealFromPlanner,
 } from "./state";
 import { fetchRecipes } from "./api";
 import {
@@ -19,6 +21,8 @@ import {
   loadUserRecipes,
   loadShoppingList,
   saveShoppingList,
+  loadMealPlanner,
+  saveMealPlanner,
 } from "./localStorage";
 
 import * as recipeView from "./views/recipeView";
@@ -30,6 +34,7 @@ import * as addRecipeView from "./views/addRecipeView";
 import * as myRecipesView from "./views/myRecipesView";
 import * as shoppingListView from "./views/shoppingListView";
 import * as pageView from "./views/pageView";
+import * as mealPlannerView from "./views/mealPlannerView";
 
 async function controlSearchResults() {
   const query = getQuery();
@@ -66,7 +71,8 @@ function controlRecipe(recipeId) {
     const recipe =
       state.search.results.find((recipe) => recipe.id === id) ||
       state.userRecipes.find((recipe) => recipe.id === id) ||
-      state.bookmarks.find((recipe) => recipe.id === id);
+      state.bookmarks.find((recipe) => recipe.id === id) ||
+      state.mealPlanner.find((meal) => Number(meal.recipeId) === id)?.recipe;
 
     if (!recipe) throw new Error("Recipe not found");
 
@@ -198,31 +204,62 @@ function controlClearCompleted() {
   saveShoppingList(state.shoppingList);
 }
 
+function controlShowMealPlanner() {
+  pageView.showMealPlannerPage();
+}
+
+state.shoppingList = loadShoppingList();
+state.bookmarks = loadBookmarks();
+state.userRecipes = loadUserRecipes();
+state.mealPlanner = loadMealPlanner();
+
+function controlMealPlanner() {
+  mealPlannerView.renderMealPlanner(state.mealPlanner);
+}
+
+controlMealPlanner();
+
+function controlAddToMealPlanner(day, mealType) {
+  addMealToPlanner(state.recipe, day, mealType);
+
+  mealPlannerView.renderMealPlanner(state.mealPlanner);
+  saveMealPlanner(state.mealPlanner);
+}
+
+function controlDeleteMeal(mealId) {
+  removeMealFromPlanner(mealId);
+
+  mealPlannerView.renderMealPlanner(state.mealPlanner);
+  saveMealPlanner(state.mealPlanner);
+}
+
+mealPlannerView.addHandlerDeleteMeal(controlDeleteMeal);
+mealPlannerView.addHandlerShowMealPlanner(controlShowMealPlanner);
+mealPlannerView.addHandlerSelectMeal(controlRecipe);
+
+recipeView.addHandlerAddToMealPlanner(controlAddToMealPlanner);
+recipeView.addHandlerAddIngredient(controlAddShoppingItem);
+recipeView.addHandlerBookmark(controlBookmark);
+
 shoppingListView.addHandlerEditShoppingItem();
 shoppingListView.addHandlerSaveShoppingItem(controlSaveShoppingItem);
 shoppingListView.addHandlerToggleCustomForm();
 shoppingListView.addHandlerAddCustomItem(controlAddShoppingItem);
 shoppingListView.addHandlerClearCompleted(controlClearCompleted);
-
-recipeView.addHandlerAddIngredient(controlAddShoppingItem);
 shoppingListView.addHandlerRemoveShoppingItem(controlRemoveShoppingItem);
-
-state.shoppingList = loadShoppingList();
 shoppingListView.addHandlerShowShoppingList(controlShowShoppingList);
 shoppingListView.renderShoppingList(state.shoppingList);
 shoppingListView.addHandlerToggleShoppingItem(controlToggleShoppingItem);
 
-state.bookmarks = loadBookmarks();
 bookmarksView.renderBookmarks(state.bookmarks);
-state.userRecipes = loadUserRecipes();
 myRecipesView.renderMyRecipes(state.userRecipes);
-
-recipeView.addHandlerBookmark(controlBookmark);
 bookmarksView.addHandlerSelectBookmark(controlBookmarkAction);
+
 navView.addHandlerBookmarksDropdown();
 navView.addHandlerMenuDropdown();
 navView.addHandlerCloseDropdowns();
 navView.addHandlerMyRecipesDropdown();
+
 addRecipeView.addHandlerShowModal();
 addRecipeView.addHandlerHideModal();
 addRecipeView.addHandlerAddIngredient();

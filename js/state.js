@@ -108,3 +108,32 @@ export function removeShoppingItem(id) {
 export function clearCompletedShoppingItems() {
   state.shoppingList = state.shoppingList.filter((item) => !item.checked);
 }
+
+export function addMealToPlanner(recipe, day, mealType) {
+  const existingMeal = state.mealPlanner.find(
+    (meal) => meal.day === day && meal.mealType === mealType,
+  );
+
+  const meal = {
+    id: existingMeal ? existingMeal.id : crypto.randomUUID(),
+    recipeId: recipe.id,
+    title: recipe.title,
+    image: recipe.image,
+    day,
+    mealType,
+    recipe,
+  };
+
+  if (existingMeal) {
+    Object.assign(existingMeal, meal);
+    return existingMeal;
+  }
+
+  state.mealPlanner.push(meal);
+
+  return meal;
+}
+
+export function removeMealFromPlanner(id) {
+  state.mealPlanner = state.mealPlanner.filter((meal) => meal.id !== id);
+}

@@ -544,7 +544,7 @@
 .directions__btn:hover {
   background-color: var(--color-primary-hover);
 }
-
+/* MEAL PLANNER */
 .meal-planner {
   padding: var(--space-32) var(--space-24);
 }
@@ -597,6 +597,174 @@
 
 .meal-planner__link:hover {
   color: var(--color-primary-hover);
+}
+
+/* WEEKLY MEAL PLANNER */
+
+.meal-planner-view {
+  grid-column: 1 / -1;
+  min-width: 0;
+  padding: var(--space-32);
+}
+
+.meal-planner-view .section-title {
+  text-align: center;
+  margin-bottom: var(--space-32);
+}
+
+.meal-planner__table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: var(--border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: var(--color-white);
+}
+
+.meal-planner__table th,
+.meal-planner__table td {
+  padding: var(--space-12);
+  border-right: var(--border-light);
+  border-bottom: var(--border-light);
+  text-align: center;
+  vertical-align: top;
+}
+
+.meal-planner__table thead th {
+  background-color: var(--color-primary-light);
+  color: var(--color-grey-800);
+  font-weight: var(--font-weight-bold);
+}
+
+.meal-planner__table thead th:first-child {
+  width: 14%;
+}
+
+.meal-planner__table tbody th {
+  background-color: var(--color-background-page);
+  color: var(--color-grey-800);
+  font-weight: var(--font-weight-semi-bold);
+  text-align: left;
+}
+
+.meal-planner__table tbody td {
+  height: 10rem;
+}
+
+.meal-planner__table tr > :last-child {
+  border-right: none;
+}
+
+.meal-planner__table tbody tr:last-child > * {
+  border-bottom: none;
+}
+
+.meal-planner__cell {
+  min-width: 0;
+}
+
+@media (max-width: 48rem) {
+  .meal-planner-view {
+    padding: var(--space-16);
+  }
+
+  .meal-planner-view .section-title {
+    margin-bottom: var(--space-20);
+  }
+
+  .meal-planner__table {
+    min-width: 64rem;
+  }
+
+  .meal-planner-view {
+    overflow-x: auto;
+  }
+}
+
+.meal-planner__cell {
+  padding: var(--space-12);
+  vertical-align: top;
+}
+
+.meal-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  min-width: 0;
+  padding: var(--space-8);
+  border: var(--border-light);
+  border-radius: var(--radius-md);
+  background-color: var(--color-white);
+  transition: var(--transition);
+}
+
+.meal-card:hover {
+  background-color: var(--color-background-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.meal-card__link {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: var(--space-8);
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.meal-card__link:hover .meal-card__title {
+  color: var(--color-primary);
+}
+
+.meal-card__image {
+  flex-shrink: 0;
+  width: 4.8rem;
+  height: 4.8rem;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.meal-card__title {
+  min-width: 0;
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: var(--font-weight-semi-bold);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+
+.meal-card__delete-btn {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-grey-600);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.meal-card__delete-btn:hover {
+  background-color: #fde8e8;
+  color: var(--color-error);
+}
+
+.meal-card__delete-btn i {
+  font-size: 1.6rem;
+}
+
+.meal-planner__submit--success {
+  background-color: var(--color-success);
+  color: var(--color-white);
 }
 
 /* FOOTER */
