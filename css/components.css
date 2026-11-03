@@ -600,16 +600,19 @@
 }
 
 /* WEEKLY MEAL PLANNER */
-
+/* WEEKLY MEAL PLANNER */
 .meal-planner-view {
   grid-column: 1 / -1;
+  width: 100%;
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: var(--space-24);
   min-width: 0;
-  padding: var(--space-32);
 }
 
 .meal-planner-view .section-title {
   text-align: center;
-  margin-bottom: var(--space-32);
+  margin-bottom: var(--space-24);
 }
 
 .meal-planner__table {
@@ -625,7 +628,7 @@
 
 .meal-planner__table th,
 .meal-planner__table td {
-  padding: var(--space-12);
+  padding: var(--space-8);
   border-right: var(--border-light);
   border-bottom: var(--border-light);
   text-align: center;
@@ -633,6 +636,7 @@
 }
 
 .meal-planner__table thead th {
+  padding: var(--space-12);
   background-color: var(--color-primary-light);
   color: var(--color-grey-800);
   font-weight: var(--font-weight-bold);
@@ -643,6 +647,7 @@
 }
 
 .meal-planner__table tbody th {
+  padding: var(--space-12);
   background-color: var(--color-background-page);
   color: var(--color-grey-800);
   font-weight: var(--font-weight-semi-bold);
@@ -650,7 +655,7 @@
 }
 
 .meal-planner__table tbody td {
-  height: 10rem;
+  height: 7rem;
 }
 
 .meal-planner__table tr > :last-child {
@@ -667,19 +672,12 @@
 
 @media (max-width: 48rem) {
   .meal-planner-view {
-    padding: var(--space-16);
-  }
-
-  .meal-planner-view .section-title {
-    margin-bottom: var(--space-20);
+    padding: var(--space-12);
+    overflow-x: auto;
   }
 
   .meal-planner__table {
     min-width: 64rem;
-  }
-
-  .meal-planner-view {
-    overflow-x: auto;
   }
 }
 
@@ -688,21 +686,29 @@
   vertical-align: top;
 }
 
+.meal-planner__table tbody td.meal-planner__cell {
+  padding: 0;
+}
+
 .meal-card {
   display: flex;
   align-items: center;
   gap: var(--space-8);
+  width: 100%;
   min-width: 0;
-  padding: var(--space-8);
-  border: var(--border-light);
-  border-radius: var(--radius-md);
+  min-height: 7rem;
+  height: 100%;
+  padding: var(--space-12);
+  border: none;
+  border-radius: 0;
   background-color: var(--color-white);
+  box-sizing: border-box;
   transition: var(--transition);
 }
 
 .meal-card:hover {
   background-color: var(--color-background-hover);
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
 }
 
 .meal-card__link {
@@ -721,8 +727,8 @@
 
 .meal-card__image {
   flex-shrink: 0;
-  width: 4.8rem;
-  height: 4.8rem;
+  width: 4.4rem;
+  height: 4.4rem;
   object-fit: cover;
   border-radius: 50%;
 }
