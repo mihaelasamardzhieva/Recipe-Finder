@@ -1,3 +1,5 @@
+import { closeAllDropdowns } from "./navView.js";
+
 const mealPlannerTable = document.querySelector(".meal-planner__table");
 
 export const addHandlerShowMealPlanner = function (handler) {
@@ -6,8 +8,7 @@ export const addHandlerShowMealPlanner = function (handler) {
 
     if (!link) return;
     e.preventDefault();
-    const dropdown = document.querySelector(".dropdown");
-    dropdown?.classList.add("hidden");
+    closeAllDropdowns();
 
     handler();
   });

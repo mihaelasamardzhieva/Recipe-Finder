@@ -179,13 +179,6 @@ export function renderRecipe(recipe) {
   recipeView.insertAdjacentHTML("beforeend", generateRecipeMarkup(recipe));
 }
 
-export function scrollToRecipe() {
-  recipeView.scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-  });
-}
-
 export function addHandlerBookmark(handler) {
   recipeView.addEventListener("click", function (e) {
     const btn = e.target.closest(".recipe-meta__bookmark-btn");

@@ -1,8 +1,11 @@
-// import { JSON } from "../mockRecipes";
-
-import { URL, API_KEY, RESULTS_PER_PAGE } from "./config";
+import { URL, API_KEY } from "./config";
 
 export const fetchRecipes = async function (query) {
+  if (!API_KEY) {
+    throw new Error(
+      "Missing SPOONACULAR_API_KEY. Copy .env.example to .env and add your key.",
+    );
+  }
   const url = `${URL}?apiKey=${API_KEY}&query=${query}&addRecipeInformation=true&addRecipeInstructions=true&addRecipeNutrition=true&number=50`;
 
   try {
@@ -10,9 +13,7 @@ export const fetchRecipes = async function (query) {
     if (!response.ok) throw new Error("Couldn't fetch recipes.");
 
     const data = await response.json();
-    console.log(data);
 
-    // const data = JSON;
     return createRecipesArray(data.results);
   } catch (error) {
     console.error("Error fetching: ", error);

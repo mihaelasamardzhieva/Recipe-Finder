@@ -22,7 +22,7 @@ function generateRecipesMarkup(recipe) {
                         </h3>
                         <div class="recipe-card__calories">
                          <i class="bi bi-fire calories__icon"></i>
-                         <p c>${recipe.nutrition.calories.amount} ${recipe.nutrition.calories.unit}</p>
+                         <p>${recipe.nutrition.calories.amount} ${recipe.nutrition.calories.unit}</p>
                         </div>
                        
                       </div>

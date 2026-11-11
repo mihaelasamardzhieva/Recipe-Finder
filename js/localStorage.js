@@ -7,7 +7,12 @@ export function loadBookmarks() {
 
   if (!bookmarks) return [];
 
-  return JSON.parse(bookmarks);
+  try {
+    return JSON.parse(bookmarks);
+  } catch (err) {
+    console.error("Could not load user bookmarks:", err);
+    return [];
+  }
 }
 
 export function saveUserRecipes(recipes) {

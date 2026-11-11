@@ -49,7 +49,11 @@
                 </button>
               </li>
               <li class="nav__item">
-                <button type="button" class="nav__btn nav__btn--bookmarks">
+                <button
+                  type="button"
+                  class="nav__btn nav__btn--bookmarks"
+                  aria-expanded="false"
+                >
                   <i class="bi bi-bookmark" aria-hidden="true"></i>
                   <span>Bookmarks</span>
                 </button>
@@ -72,7 +76,7 @@
                 </div>
               </li>
               <li class="nav__item nav__item--menu">
-                <button type="button" class="nav__btn">
+                <button type="button" class="nav__btn" aria-expanded="false">
                   <i class="bi bi-list" aria-hidden="true"></i>
                 </button>
                 <div class="dropdown hidden">
@@ -468,9 +472,12 @@
     </div>
 
     <footer class="footer">
-      <p class="footer__copyright">&copy; Improved and modified by Mihaela.</p>
       <p class="footer__copyright">
-        Check the original version here:
+        &copy; 2026 Designed and built by Mihaela Samardzhieva as a portfolio
+        project.
+      </p>
+      <p class="footer__copyright">
+        Inspired by the original:
         <a
           class="footer__link"
           target="_blank"

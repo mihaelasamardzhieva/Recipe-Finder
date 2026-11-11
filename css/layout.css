@@ -54,7 +54,7 @@ body {
 
 .main-content {
   display: grid;
-  grid-template-columns: 40rem 1fr;
+  grid-template-columns: minmax(0, 40rem) minmax(0, 1fr);
   min-height: 70rem;
   background-color: var(--color-white);
   border-radius: var(--radius-lg);
@@ -82,9 +82,10 @@ body {
   margin-top: var(--space-64);
   padding: var(--space-32) 0;
   text-align: center;
-  color: var(--color-grey-600);
+  color: var(--color-grey-700);
   font-size: 1.4rem;
 }
+
 .hidden {
   display: none;
 }
