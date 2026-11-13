@@ -1,11 +1,14 @@
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/img/favicon.png" />
     <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700"
+      href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -15,7 +18,18 @@
 
     <link rel="stylesheet" href="css/style.css" />
     <script type="module" src="js/main.js"></script>
-    <title>Recipe finder</title>
+    <title>Forkify – Recipe Finder</title>
+    <meta
+      name="description"
+      content="Search recipes by ingredient, check their nutrition, plan your week and build a shopping list. A portfolio project built with vanilla JavaScript."
+    />
+    <meta name="theme-color" content="#52b788" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Forkify – Recipe Finder" />
+    <meta
+      property="og:description"
+      content="Search recipes by ingredient, plan your week and build a shopping list."
+    />
   </head>
   <body>
     <div class="container">
@@ -36,6 +50,7 @@
               type="text"
               class="search__input"
               placeholder="Search by ingredient..."
+              aria-label="Search recipes by ingredient"
               required
             />
             <button type="submit" class="btn search__btn">
@@ -80,7 +95,12 @@
                 </div>
               </li>
               <li class="nav__item nav__item--menu">
-                <button type="button" class="nav__btn" aria-expanded="false">
+                <button
+                  type="button"
+                  class="nav__btn"
+                  aria-label="Menu"
+                  aria-expanded="false"
+                >
                   <i class="bi bi-list" aria-hidden="true"></i>
                 </button>
                 <div class="dropdown hidden">
@@ -353,7 +373,12 @@
 
     <div class="overlay hidden"></div>
 
-    <div class="add-recipe-modal hidden" role="dialog" aria-modal="true">
+    <div
+      class="add-recipe-modal hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Add a recipe"
+    >
       <button class="btn-close__modal" aria-label="Close modal" type="button">
         <i class="bi bi-x" aria-hidden="true"></i>
       </button>

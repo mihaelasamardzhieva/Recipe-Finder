@@ -1,3 +1,5 @@
+import { escapeHtml } from "./ui";
+
 const shoppingList = document.querySelector(".shopping-list");
 const summary = document.querySelector(".shopping-list__summary");
 const emptyState = document.querySelector(".shopping-list__empty");
@@ -7,7 +9,7 @@ const formatItem = function (item) {
   const quantity = item.amount === null ? "" : `${item.amount} `;
   const unit = item.unit ? `${item.unit} ` : "";
 
-  return `${quantity}${unit}${item.name}`;
+  return escapeHtml(`${quantity}${unit}${item.name}`);
 };
 
 export const addHandlerShowShoppingList = function (handler) {
@@ -81,9 +83,9 @@ export const renderShoppingList = function (items) {
 
         <input
           class="shopping-item__edit-unit"
-          name="unit"
+           name="unit"
           type="text"
-          value="${item.unit}"
+          value="${escapeHtml(item.unit)}"
           placeholder="Unit"
           aria-label="Unit"
         />
@@ -92,7 +94,7 @@ export const renderShoppingList = function (items) {
           class="shopping-item__edit-name"
           name="name"
           type="text"
-          value="${item.name}"
+          value="${escapeHtml(item.name)}"
           required
           aria-label="Item name"
         />

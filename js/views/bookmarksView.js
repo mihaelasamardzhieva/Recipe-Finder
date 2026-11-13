@@ -1,28 +1,6 @@
-const bookmarksList = document.querySelector(".bookmarks__list");
+import { generatePreviewMarkup } from "./ui";
 
-function generateBookmarkMarkup(recipe) {
-  return `
-    <li class="bookmark-preview" data-id="${recipe.id}">
-      <a href="#" class="bookmark-preview__link">
-        <figure class="bookmark-preview__figure">
-          <img src="${recipe.image}" alt="${recipe.title}">
-        </figure>
-        <div class="bookmark-preview__content">
-          <h3 class="bookmark-preview__title">
-            ${recipe.title}
-          </h3>   
-        </div>
-      </a>
-  <button
-        type="button"
-        class="bookmark-preview__remove"
-        aria-label="Remove ${recipe.title} from bookmarks"
-      >
-        ×
-      </button>
-    </li>
-  `;
-}
+const bookmarksList = document.querySelector(".bookmarks__list");
 
 export function renderBookmarks(bookmarks) {
   bookmarksList.innerHTML = "";
@@ -43,7 +21,7 @@ export function renderBookmarks(bookmarks) {
   bookmarks.forEach((bookmark) => {
     bookmarksList.insertAdjacentHTML(
       "beforeend",
-      generateBookmarkMarkup(bookmark),
+      generatePreviewMarkup(bookmark, "bookmarks"),
     );
   });
 }

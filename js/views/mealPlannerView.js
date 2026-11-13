@@ -1,4 +1,5 @@
-import { closeAllDropdowns } from "./navView.js";
+import { closeAllDropdowns } from "./navView";
+import { escapeHtml, imageSrc } from "./ui";
 
 const mealPlannerTable = document.querySelector(".meal-planner__table");
 
@@ -32,22 +33,22 @@ export const renderMealPlanner = function (meals) {
   <div class="meal-card" data-id="${meal.id}">
     <a
       href="#"
-      class="meal-card__link"
+  class="meal-card__link"
       data-recipe-id="${meal.recipeId}"
-      aria-label="View recipe: ${meal.title}"
+      aria-label="View recipe: ${escapeHtml(meal.title)}"
     >
-      <img
+        <img
         class="meal-card__image"
-        src="${meal.image}"
+        src="${imageSrc(meal.image)}"
         alt=""
       />
-      <span class="meal-card__title">${meal.title}</span>
+      <span class="meal-card__title">${escapeHtml(meal.title)}</span>
     </a>
 
     <button
       class="meal-card__delete-btn"
       type="button"
-      aria-label="Remove ${meal.title} from meal planner"
+      aria-label="Remove ${escapeHtml(meal.title)} from meal planner"
     >
       <i class="bi bi-trash" aria-hidden="true"></i>
     </button>

@@ -80,7 +80,7 @@ body {
 
 .footer {
   margin-top: var(--space-64);
-  padding: var(--space-32) 0;
+  padding: var(--space-32) var(--space-16);
   text-align: center;
   color: var(--color-grey-700);
   font-size: 1.4rem;

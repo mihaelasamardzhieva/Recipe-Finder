@@ -1,13 +1,26 @@
 {
   "name": "recipefinder",
   "version": "1.0.0",
-  "description": "Recipe Finder",
+  "private": true,
+  "description": "Recipe search, weekly meal planner and shopping list built with vanilla JavaScript and the Spoonacular API.",
+  "keywords": [
+    "recipes",
+    "meal-planner",
+    "shopping-list",
+    "javascript",
+    "spoonacular",
+    "parcel"
+  ],
   "scripts": {
     "start": "parcel index.html",
     "build": "parcel build index.html"
   },
   "author": "Mihaela Samardzhieva",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mihaelasamardzhieva/Recipe-Finder.git"
+  },
   "devDependencies": {
     "parcel": "^2.16.1"
   }

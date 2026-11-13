@@ -47,6 +47,19 @@ async function controlSearchResults() {
   try {
     const recipes = await fetchRecipes(query);
     setSearchResults(query, recipes);
+
+    if (recipes.length === 0) {
+      resultsView.showError(
+        `No recipes found for "${query}". Try a different ingredient.`,
+      );
+      paginationView.renderPagination({
+        page: 1,
+        totalResults: 0,
+        resultsPerPage: state.search.resultsPerPage,
+      });
+      return;
+    }
+
     resultsView.renderResults(getSearchResultsPage());
 
     paginationView.renderPagination({
@@ -55,8 +68,12 @@ async function controlSearchResults() {
       resultsPerPage: state.search.resultsPerPage,
     });
   } catch (err) {
-    console.log(err);
-    resultsView.showError("Something went wrong while loading the results.");
+    console.error(err);
+    resultsView.showError(
+      err.status === 402
+        ? "The daily limit of the recipe API has been reached. Please try again tomorrow."
+        : "Something went wrong while loading the results.",
+    );
   }
 }
 
@@ -75,15 +92,16 @@ function controlRecipe(recipeId) {
       state.mealPlanner.find((meal) => Number(meal.recipeId) === id)?.recipe;
 
     if (!recipe) throw new Error("Recipe not found");
-
+    recipe.bookmarked = state.bookmarks.some((bookmark) => bookmark.id === id);
     state.recipe = recipe;
 
     recipeView.renderRecipe(recipe);
     pageView.showRecipePage();
     resultsView.updateActiveRecipe(id);
     navView.closeAllDropdowns();
+    recipeView.scrollToRecipe();
   } catch (err) {
-    console.log(err);
+    console.error(err);
     recipeView.showError("Something went wrong while loading the recipe.");
   }
 }
@@ -136,6 +154,8 @@ function controlUploadRecipe(recipe) {
 
   state.recipe = recipe;
   recipeView.renderRecipe(recipe);
+  pageView.showRecipePage();
+  recipeView.scrollToRecipe();
 
   myRecipesView.renderMyRecipes(state.userRecipes);
 
@@ -168,40 +188,40 @@ function controlShowShoppingList() {
   shoppingListView.renderShoppingList(state.shoppingList);
   navView.closeAllDropdowns();
 }
+function refreshShoppingList() {
+  shoppingListView.renderShoppingList(state.shoppingList);
+  saveShoppingList(state.shoppingList);
+}
 
 function controlAddShoppingItem(item) {
   addShoppingItem({
     ...item,
-    amount: item.amount === "" ? null : Number(item.amount),
+    amount:
+      item.amount === "" || item.amount === null ? null : Number(item.amount),
   });
 
-  shoppingListView.renderShoppingList(state.shoppingList);
-  saveShoppingList(state.shoppingList);
+  refreshShoppingList();
 }
 
 function controlToggleShoppingItem(id) {
   toggleShoppingItem(id);
-  shoppingListView.renderShoppingList(state.shoppingList);
-  saveShoppingList(state.shoppingList);
+  refreshShoppingList();
 }
 
 function controlRemoveShoppingItem(id) {
   removeShoppingItem(id);
-  shoppingListView.renderShoppingList(state.shoppingList);
-  saveShoppingList(state.shoppingList);
+  refreshShoppingList();
 }
 
 function controlSaveShoppingItem(id, updates) {
   updateShoppingItem(id, updates);
 
-  shoppingListView.renderShoppingList(state.shoppingList);
-  saveShoppingList(state.shoppingList);
+  refreshShoppingList();
 }
 
 function controlClearCompleted() {
   clearCompletedShoppingItems();
-  shoppingListView.renderShoppingList(state.shoppingList);
-  saveShoppingList(state.shoppingList);
+  refreshShoppingList();
 }
 
 function controlShowMealPlanner() {
@@ -255,10 +275,9 @@ bookmarksView.renderBookmarks(state.bookmarks);
 myRecipesView.renderMyRecipes(state.userRecipes);
 bookmarksView.addHandlerSelectBookmark(controlBookmarkAction);
 
-navView.addHandlerBookmarksDropdown();
-navView.addHandlerMenuDropdown();
-navView.addHandlerCloseDropdowns();
-navView.addHandlerMyRecipesDropdown();
+navView.addHandlerDropdowns();
+
+recipeView.clearRecipe();
 
 addRecipeView.addHandlerShowModal();
 addRecipeView.addHandlerHideModal();

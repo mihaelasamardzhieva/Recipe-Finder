@@ -1,67 +1,28 @@
-export function saveBookmarks(bookmarks) {
-  localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+function save(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (err) {
+    console.error(`Could not save "${key}":`, err);
+  }
 }
 
-export function loadBookmarks() {
-  const bookmarks = localStorage.getItem("bookmarks");
-
-  if (!bookmarks) return [];
-
+function load(key) {
   try {
-    return JSON.parse(bookmarks);
+    return JSON.parse(localStorage.getItem(key)) ?? [];
   } catch (err) {
-    console.error("Could not load user bookmarks:", err);
+    console.error(`Could not load "${key}":`, err);
     return [];
   }
 }
 
-export function saveUserRecipes(recipes) {
-  localStorage.setItem("userRecipes", JSON.stringify(recipes));
-}
+export const saveBookmarks = (bookmarks) => save("bookmarks", bookmarks);
+export const loadBookmarks = () => load("bookmarks");
 
-export function loadUserRecipes() {
-  const recipes = localStorage.getItem("userRecipes");
+export const saveUserRecipes = (recipes) => save("userRecipes", recipes);
+export const loadUserRecipes = () => load("userRecipes");
 
-  if (!recipes) return [];
+export const saveShoppingList = (items) => save("shoppingList", items);
+export const loadShoppingList = () => load("shoppingList");
 
-  try {
-    return JSON.parse(recipes);
-  } catch (err) {
-    console.error("Could not load user recipes:", err);
-    return [];
-  }
-}
-
-export function saveShoppingList(items) {
-  localStorage.setItem("shoppingList", JSON.stringify(items));
-}
-
-export function loadShoppingList() {
-  const items = localStorage.getItem("shoppingList");
-
-  if (!items) return [];
-
-  try {
-    return JSON.parse(items);
-  } catch (err) {
-    console.error("Could not load shopping list:", err);
-    return [];
-  }
-}
-
-export const saveMealPlanner = function (meals) {
-  localStorage.setItem("mealPlanner", JSON.stringify(meals));
-};
-
-export const loadMealPlanner = function () {
-  const data = localStorage.getItem("mealPlanner");
-
-  if (!data) return [];
-
-  try {
-    return JSON.parse(data);
-  } catch (err) {
-    console.error("Could not load the meal planner:", err);
-    return [];
-  }
-};
+export const saveMealPlanner = (meals) => save("mealPlanner", meals);
+export const loadMealPlanner = () => load("mealPlanner");

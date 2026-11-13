@@ -77,6 +77,10 @@ export function addHandlerShowModal() {
 export function addHandlerHideModal() {
   closeBtn.addEventListener("click", closeModal);
   overlay.addEventListener("click", closeModal);
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeModal();
+  });
 }
 
 export function addHandlerAddIngredient() {

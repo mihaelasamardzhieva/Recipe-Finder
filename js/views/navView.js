@@ -1,80 +1,53 @@
-const bookmarksBtn = document.querySelector(".nav__btn--bookmarks");
-const bookmarksDropdown = document.querySelector(".bookmarks-dropdown");
-const menuBtn = document.querySelector(".nav__item--menu > .nav__btn");
-const menuDropdown = document.querySelector(".nav__item--menu .dropdown");
-const myRecipesBtn = document.querySelector(".nav__btn--my-recipes");
-const myRecipesDropdown = document.querySelector(".my-recipes-dropdown");
+const dropdowns = [
+  {
+    button: document.querySelector(".nav__btn--bookmarks"),
+    menu: document.querySelector(".bookmarks-dropdown"),
+  },
+  {
+    button: document.querySelector(".nav__btn--my-recipes"),
+    menu: document.querySelector(".my-recipes-dropdown"),
+  },
+  {
+    button: document.querySelector(".nav__item--menu > .nav__btn"),
+    menu: document.querySelector(".nav__item--menu .dropdown"),
+  },
+];
 
 export function closeAllDropdowns() {
-  bookmarksDropdown.classList.add("hidden");
-  myRecipesDropdown.classList.add("hidden");
-  menuDropdown.classList.add("hidden");
-
-  bookmarksBtn.setAttribute("aria-expanded", "false");
-  myRecipesBtn.setAttribute("aria-expanded", "false");
-  menuBtn.setAttribute("aria-expanded", "false");
-}
-
-export function addHandlerBookmarksDropdown() {
-  bookmarksDropdown.classList.add("hidden");
-
-  bookmarksBtn.addEventListener("click", function (e) {
-    e.stopPropagation();
-
-    const isOpening = bookmarksDropdown.classList.contains("hidden");
-
-    closeAllDropdowns();
-
-    if (isOpening) {
-      bookmarksDropdown.classList.remove("hidden");
-      bookmarksBtn.setAttribute("aria-expanded", "true");
-    }
+  dropdowns.forEach(({ button, menu }) => {
+    menu.classList.add("hidden");
+    button.setAttribute("aria-expanded", "false");
   });
 }
 
-export function addHandlerMyRecipesDropdown() {
-  myRecipesDropdown.classList.add("hidden");
+export function addHandlerDropdowns() {
+  closeAllDropdowns();
 
-  myRecipesBtn.addEventListener("click", function (e) {
-    e.stopPropagation();
+  dropdowns.forEach(({ button, menu }) => {
+    button.addEventListener("click", function (e) {
+      e.stopPropagation();
 
-    const isOpening = myRecipesDropdown.classList.contains("hidden");
+      const isOpening = menu.classList.contains("hidden");
 
-    closeAllDropdowns();
-
-    if (isOpening) {
-      myRecipesDropdown.classList.remove("hidden");
-      myRecipesBtn.setAttribute("aria-expanded", "true");
-    }
-  });
-}
-
-export function addHandlerMenuDropdown() {
-  menuDropdown.classList.add("hidden");
-
-  menuBtn.addEventListener("click", function (e) {
-    e.stopPropagation();
-    const isOpening = menuDropdown.classList.contains("hidden");
-    closeAllDropdowns();
-
-    if (isOpening) {
-      menuDropdown.classList.remove("hidden");
-      menuBtn.setAttribute("aria-expanded", "true");
-    }
-  });
-}
-
-export function addHandlerCloseDropdowns() {
-  document.addEventListener("click", function (e) {
-    if (
-      !bookmarksBtn.contains(e.target) &&
-      !bookmarksDropdown.contains(e.target) &&
-      !myRecipesBtn.contains(e.target) &&
-      !myRecipesDropdown.contains(e.target) &&
-      !menuBtn.contains(e.target) &&
-      !menuDropdown.contains(e.target)
-    ) {
       closeAllDropdowns();
-    }
+
+      if (isOpening) {
+        menu.classList.remove("hidden");
+        button.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+
+  document.addEventListener("click", function (e) {
+    const clickedInside = dropdowns.some(
+      ({ button, menu }) =>
+        button.contains(e.target) || menu.contains(e.target),
+    );
+
+    if (!clickedInside) closeAllDropdowns();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeAllDropdowns();
   });
 }

@@ -31,6 +31,8 @@ export function getSearchResultsPage(page = state.search.page) {
 }
 
 export function addBookmark(recipe) {
+  if (state.bookmarks.some((bookmark) => bookmark.id === recipe.id)) return;
+
   recipe.bookmarked = true;
   state.bookmarks.push(recipe);
   saveBookmarks(state.bookmarks);
@@ -64,7 +66,8 @@ export function addShoppingItem(item) {
 
   if (existingItem && item.amount !== null) {
     if (existingItem.amount !== null) {
-      existingItem.amount += item.amount;
+      existingItem.amount =
+        Math.round((existingItem.amount + item.amount) * 100) / 100;
     } else {
       existingItem.amount = item.amount;
     }

@@ -1,31 +1,6 @@
+import { generatePreviewMarkup } from "./ui";
+
 const myRecipesList = document.querySelector(".my-recipes__list");
-const myRecipesBtn = document.querySelector(".nav__btn--my-recipes");
-const myRecipesDropdown = document.querySelector(".my-recipes-dropdown");
-
-function generateRecipeMarkup(recipe) {
-  return `
-    <li class="bookmark-preview" data-id="${recipe.id}">
-      <a href="#" class="bookmark-preview__link">
-        <figure class="bookmark-preview__figure">
-          <img src="${recipe.image}" alt="${recipe.title}">
-        </figure>
-
-        <div class="bookmark-preview__content">
-          <h3 class="bookmark-preview__title">
-            ${recipe.title}
-          </h3>
-        </div>
-      </a>
-         <button
-        type="button"
-        class="bookmark-preview__remove"
-        aria-label="Remove ${recipe.title} from My Recipes"
-      >
-         ×
-      </button>
-    </li>
-  `;
-}
 
 export function renderMyRecipes(recipes) {
   myRecipesList.innerHTML = "";
@@ -40,7 +15,10 @@ export function renderMyRecipes(recipes) {
   }
 
   recipes.forEach((recipe) => {
-    myRecipesList.insertAdjacentHTML("beforeend", generateRecipeMarkup(recipe));
+    myRecipesList.insertAdjacentHTML(
+      "beforeend",
+      generatePreviewMarkup(recipe, "My Recipes"),
+    );
   });
 }
 

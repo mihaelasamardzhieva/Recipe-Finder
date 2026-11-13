@@ -1,6 +1,33 @@
-import { renderSpinner, renderError } from "./ui";
+import {
+  renderSpinner,
+  renderError,
+  escapeHtml,
+  safeUrl,
+  imageSrc,
+  formatNutrient,
+} from "./ui";
 
 const recipeView = document.querySelector(".recipe-view");
+
+const stackedLayout = window.matchMedia("(max-width: 60rem)");
+
+const NUTRITION_ITEMS = [
+  { key: "calories", icon: "bi-fire calories__icon" },
+  { key: "carbs", icon: "bi-cake2 carbs__icon" },
+  { key: "protein", icon: "bi-egg protein__icon" },
+  { key: "fat", icon: "bi-droplet fat__icon" },
+  { key: "fiber", icon: "bi-leaf fiber__icon" },
+];
+
+function generateNutritionMarkup(nutrition) {
+  return NUTRITION_ITEMS.map(
+    ({ key, icon }) => `
+      <li class="nutrition__item">
+        <i class="bi ${icon}" aria-hidden="true"></i>
+        <strong>${formatNutrient(nutrition[key])}</strong>
+      </li>`,
+  ).join("");
+}
 
 export function showSpinner() {
   renderSpinner(recipeView);
@@ -14,9 +41,14 @@ function generateRecipeMarkup(recipe) {
   return ` 
 
 <figure class="recipe-hero">
-          <img src="${recipe.image}" alt="${recipe.title}" class="recipe-hero__img" />
+          <img src="${imageSrc(recipe.image)}" alt="${escapeHtml(recipe.title)}" class="recipe-hero__img" />
           <figcaption class="recipe-hero__caption">
-            <h1 class="recipe-hero__title">${recipe.title}</h1>
+            <h1 class="recipe-hero__title">${escapeHtml(recipe.title)}</h1>
+            ${
+              recipe.publisher
+                ? `<p class="recipe-hero__author">By ${escapeHtml(recipe.publisher)}</p>`
+                : ""
+            }
           </figcaption>
         </figure>
 
@@ -43,45 +75,12 @@ function generateRecipeMarkup(recipe) {
     aria-hidden="true"
   ></i>
 </button>
-              </section>
-
-            <section class='nutrition'>
+          </section>
+            <section class="nutrition">
               <h2 class="section-title">Nutrition data</h2>
 
-              <ul class="nutrition__list">
-                <li class="nutrition__item">
-            <i class="bi bi-fire calories__icon" aria-hidden="true"></i>
-           
-            <strong>${recipe.nutrition.calories.amount} ${recipe.nutrition.calories.unit}</strong>
-                </li>
-             
-                <li class="nutrition__item">
-                  <i class="bi bi-cake2 carbs__icon" aria-hidden="true"></i>
-          
-             <strong>${recipe.nutrition.carbs.amount} ${recipe.nutrition.carbs.unit}</strong>
-                </li>
-
-                     <li class="nutrition__item">
-                    <i class="bi bi-egg protein__icon" aria-hidden="true"></i>
-           
-             <strong>${recipe.nutrition.protein.amount} ${recipe.nutrition.protein.unit}</strong>
-                     </li>
-
-                     <li class="nutrition__item">
-                      <i class="bi bi-droplet fat__icon" aria-hidden="true"></i>
-           
-            <strong>${recipe.nutrition.fat.amount} ${recipe.nutrition.fat.unit}</strong>
-                     </li>
-
-                        <li class="nutrition__item">
-                        <i class="bi bi-leaf fiber__icon" aria-hidden="true"></i>
-        
-            <strong>${recipe.nutrition.fiber.amount} ${recipe.nutrition.fiber.unit}</strong>
-                        </li>
-                      </ul>
-                    </section>
-
-
+              <ul class="nutrition__list">${generateNutritionMarkup(recipe.nutrition)}</ul>
+            </section>
           <section class="ingredients">
             <h2 class="section-title">Ingredients</h2>
             
@@ -97,7 +96,7 @@ function generateRecipeMarkup(recipe) {
             <p class="directions__text"
               >Please check the complete cooking instructions on the original website.</p
             >
-            <a class="directions__btn" href="${recipe.sourceUrl}"
+           <a class="directions__btn" href="${safeUrl(recipe.sourceUrl)}"
               target="_blank"
       rel="noopener noreferrer">View recipe</a>
          
@@ -137,7 +136,7 @@ function generateRecipeMarkup(recipe) {
           Meal
         </label>
 
-        <select id="meal" name="mealType"required>
+        <select id="meal" name="mealType" required>
 
           <option value="">
             Select meal
@@ -162,10 +161,10 @@ function generateRecipeMarkup(recipe) {
 
 function generateMarkupIngredient(ingredient) {
   return `
-  <li class="ingredients__item">
+   <li class="ingredients__item">
                 <span class="ingredients__quantity">${ingredient.amount}</span>
-                <span class="ingredients__unit">${ingredient.unit}</span>
-                <span class="ingredients__name">${ingredient.name}</span> 
+                <span class="ingredients__unit">${escapeHtml(ingredient.unit)}</span>
+                <span class="ingredients__name">${escapeHtml(ingredient.name)}</span> 
                   <button class="ingredients__btn" type="button" aria-label="Add to shopping list">
  <i class="bi bi-cart4" aria-hidden="true"></i>
                 </button>
@@ -189,10 +188,28 @@ export function addHandlerBookmark(handler) {
   });
 }
 
-export function clearRecipe() {
-  recipeView.innerHTML = "";
+export function renderWelcome() {
+  recipeView.innerHTML = `
+    <div class="welcome">
+      <i class="bi bi-egg-fried welcome__icon" aria-hidden="true"></i>
+      <h2 class="welcome__title">Find your next meal</h2>
+      <p class="welcome__text">
+        Search for an ingredient to discover recipes, check their nutrition,
+        plan your week and build a shopping list.
+      </p>
+    </div>
+  `;
 }
 
+export function clearRecipe() {
+  renderWelcome();
+}
+
+export function scrollToRecipe() {
+  if (stackedLayout.matches) {
+    recipeView.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
 export function addHandlerAddIngredient(handler) {
   recipeView.addEventListener("click", function (e) {
     const btn = e.target.closest(".ingredients__btn");
