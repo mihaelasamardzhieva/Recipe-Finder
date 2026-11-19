@@ -131,3 +131,7 @@ Designed and built by **Mihaela Samardzhieva** ([GitHub](https://github.com/miha
 ## License
 
 This project is licensed under the ISC License.
+
+## Live demo:
+
+https://forkify-recipe-finder-mihaela.netlify.app
