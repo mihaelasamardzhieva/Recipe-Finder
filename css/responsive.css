@@ -8,6 +8,12 @@
   }
 }
 
+@media (max-width: 48rem) {
+  .ingredients__list {
+    grid-template-columns: 1fr;
+  }
+}
+
 @container recipe (max-width: 45rem) {
   .recipe-hero__img {
     height: 20rem;
@@ -217,6 +223,43 @@
     justify-content: flex-end;
   }
 }
+@media (max-width: 60rem) {
+  .shopping-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 40rem) {
+  .shopping-list-view {
+    padding: var(--space-16);
+  }
+
+  .shopping-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 48rem) {
+  .meal-planner-view {
+    padding: var(--space-12);
+    overflow-x: auto;
+  }
+
+  .meal-planner__table {
+    min-width: 64rem;
+  }
+}
+
+@media (max-width: 48rem) {
+  .shopping-list-view {
+    padding: var(--space-16);
+  }
+
+  .shopping-item {
+    gap: var(--space-8);
+    padding: var(--space-8);
+  }
+}
 
 @media (max-width: 40rem) {
   .container {
@@ -296,5 +339,43 @@
 
   .footer {
     margin-top: var(--space-40);
+  }
+}
+
+@media (max-width: 40rem) {
+  .shopping-item__edit-form {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .shopping-item__edit-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .shopping-item__edit-name {
+    grid-column: 1 / -1;
+  }
+
+  .shopping-item__edit-actions {
+    justify-content: flex-end;
+  }
+}
+@media (max-width: 40rem) {
+  .shopping-list__custom-form {
+    padding: var(--space-16);
+  }
+
+  .shopping-list__custom-fields {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .shopping-list__custom-name {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 40rem) {
+  .shopping-list__toolbar {
+    justify-content: center;
   }
 }

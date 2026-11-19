@@ -468,12 +468,6 @@
   opacity: 1;
 }
 
-@media (max-width: 48rem) {
-  .ingredients__list {
-    grid-template-columns: 1fr;
-  }
-}
-
 .ingredients__btn--added {
   position: relative;
   color: var(--color-primary-hover);
@@ -652,17 +646,6 @@
   min-width: 0;
   padding: var(--space-12);
   vertical-align: top;
-}
-
-@media (max-width: 48rem) {
-  .meal-planner-view {
-    padding: var(--space-12);
-    overflow-x: auto;
-  }
-
-  .meal-planner__table {
-    min-width: 64rem;
-  }
 }
 
 .meal-planner__table tbody td.meal-planner__cell {
@@ -1028,22 +1011,6 @@
   overflow-wrap: anywhere;
 }
 
-@media (max-width: 60rem) {
-  .shopping-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 40rem) {
-  .shopping-list-view {
-    padding: var(--space-16);
-  }
-
-  .shopping-list {
-    grid-template-columns: 1fr;
-  }
-}
-
 .shopping-item__btn {
   display: inline-flex;
   align-items: center;
@@ -1078,17 +1045,6 @@
 .shopping-item__check {
   accent-color: var(--color-primary);
   cursor: pointer;
-}
-
-@media (max-width: 48rem) {
-  .shopping-list-view {
-    padding: var(--space-16);
-  }
-
-  .shopping-item {
-    gap: var(--space-8);
-    padding: var(--space-8);
-  }
 }
 
 .shopping-item__display {
@@ -1152,25 +1108,6 @@
   background-color: var(--color-background-hover);
 }
 
-@media (max-width: 40rem) {
-  .shopping-item__edit-form {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .shopping-item__edit-fields {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .shopping-item__edit-name {
-    grid-column: 1 / -1;
-  }
-
-  .shopping-item__edit-actions {
-    justify-content: flex-end;
-  }
-}
-
 .shopping-list__footer {
   display: flex;
   flex-direction: column;
@@ -1207,20 +1144,6 @@
 .shopping-list__custom-fields input:focus {
   outline: 2px solid var(--color-primary);
   outline-offset: 1px;
-}
-
-@media (max-width: 40rem) {
-  .shopping-list__custom-form {
-    padding: var(--space-16);
-  }
-
-  .shopping-list__custom-fields {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .shopping-list__custom-name {
-    grid-column: 1 / -1;
-  }
 }
 
 .shopping-list__custom-actions {
@@ -1298,12 +1221,6 @@
 .shopping-list__clear-btn:hover {
   color: var(--color-error);
   background-color: #fde8e8;
-}
-
-@media (max-width: 40rem) {
-  .shopping-list__toolbar {
-    justify-content: center;
-  }
 }
 
 /* UI */
