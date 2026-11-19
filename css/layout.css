@@ -33,7 +33,6 @@ body {
 }
 
 .search {
-  display: flex;
   align-items: center;
   gap: 1rem;
 }
@@ -68,10 +67,6 @@ body {
 
 .recipe-view {
   min-width: 0;
-}
-
-.meal-planner-view {
-  width: 100%;
 }
 
 .shopping-list-view {

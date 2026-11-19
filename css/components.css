@@ -202,6 +202,7 @@
 
 .results-list__item {
   border-bottom: var(--border-light);
+  border-left: 4px solid transparent;
 }
 
 .selected {
@@ -394,7 +395,7 @@
 
 .ingredients__item {
   display: grid;
-  grid-template-columns: 4rem max-content minmax(0, 1fr) 4rem;
+  grid-template-columns: 4.4rem 6.4rem minmax(0, 1fr) 4rem;
   align-items: center;
   gap: var(--space-8);
   min-width: 0;
@@ -416,7 +417,7 @@
 
 .ingredients__unit {
   color: var(--color-grey-700);
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 
 .ingredients__name {
@@ -478,12 +479,11 @@
   content: attr(data-tooltip);
   position: absolute;
   bottom: calc(100% + 0.8rem);
-  left: 50%;
-  transform: translateX(-50%);
+  right: 0;
   z-index: 10;
   display: block;
   width: max-content;
-  max-width: 24rem;
+  max-width: min(24rem, 70vw);
   box-sizing: border-box;
   padding: var(--space-8) var(--space-12);
   border-radius: var(--radius-sm);
@@ -492,7 +492,6 @@
   font-size: 1.3rem;
   font-weight: 500;
   line-height: 1.4;
-  white-space: nowrap;
   pointer-events: none;
 }
 
@@ -741,6 +740,7 @@
   color: var(--color-primary);
   font-weight: var(--font-weight-semi-bold);
   white-space: nowrap;
+  transition: var(--transition);
 }
 
 .footer__link:hover {
@@ -947,7 +947,6 @@
 .shopping-list-view {
   grid-column: 1 / -1;
   justify-self: center;
-  width: min(100%, 120rem);
   padding: var(--space-32);
 }
 
