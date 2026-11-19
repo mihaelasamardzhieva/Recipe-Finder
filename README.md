@@ -119,14 +119,6 @@ The key is read from a `.env` file that is excluded from git, so it is never com
 
 Because this is a client-side app, the key is still included in the built JavaScript and can be seen in the browser's developer tools on the live site. For a production application, the right approach is to send requests through a small backend or serverless function that keeps the key private.
 
-## Ideas for future improvements
-
-- Route API requests through a serverless function so the key is never exposed to the browser
-- Filters for diet, cuisine and cooking time
-- Drag and drop in the meal planner
-- Automated tests for the state logic
-- Print-friendly shopping list
-
 ## Acknowledgements
 
 - Recipe data and images are provided by [Spoonacular](https://spoonacular.com/food-api).
